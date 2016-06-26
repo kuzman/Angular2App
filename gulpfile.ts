@@ -16,6 +16,8 @@ gulp.task('build.dev', (done: any) =>
 //              'tslint',
 //              'css-lint',
               'build.assets.dev',
+              'build.html',
+              'build.scss',
               'build.html_css',
               'build.js.dev',
               'build.index.dev',
@@ -34,6 +36,8 @@ gulp.task('build.e2e', (done: any) =>
   runSequence('clean.dev',
               'tslint',
               'build.assets.dev',
+              'build.html',
+              'build.scss',
               'build.js.e2e',
               'build.index.dev',
               done));
@@ -43,9 +47,10 @@ gulp.task('build.e2e', (done: any) =>
 gulp.task('build.prod', (done: any) =>
   runSequence('clean.prod',
               'tslint',
-              'css-lint',
+              'sass-lint',
               'build.assets.prod',
-              'build.html_css',
+              'build.html',
+              'build.scss',
               'copy.js.prod',
               'build.js.prod',
               'build.bundles',
@@ -59,6 +64,8 @@ gulp.task('build.test', (done: any) =>
   runSequence('clean.dev',
               'tslint',
               'build.assets.dev',
+              'build.html',
+              'build.scss',
               'build.js.test',
               'build.index.dev',
               done));
@@ -79,10 +86,10 @@ gulp.task('build.tools', (done: any) =>
 
 // --------------
 // Docs
-// gulp.task('docs', (done: any) =>
-//   runSequence('build.docs',
-//               'serve.docs',
-//               done));
+gulp.task('docs', (done: any) =>
+  runSequence('build.docs',
+              'serve.docs',
+              done));
 
 // --------------
 // Serve dev

@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { argv } from 'yargs';
 
-import { Environments, InjectableDependency } from './seed.config.interfaces';
+import { Environments, InjectableDependency, SassOptions } from './seed.config.interfaces';
 
 /**
  * The enumeration of available environments.
@@ -240,6 +240,12 @@ export class SeedConfig {
    * The ruleset to be used by `codelyzer` for linting the TypeScript files.
    */
   CODELYZER_RULES = customRules();
+
+  /**
+   * The SASS options to be used to compile the SCSS files.
+   */
+  SASS_OPTIONS: SassOptions = {
+  };
 
   /**
    * The list of NPM dependcies to be injected in the `index.html`.

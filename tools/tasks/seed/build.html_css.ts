@@ -30,7 +30,7 @@ if (isProd) {
 }
 
 /**
- * Copies all HTML files in `src/client` over to the `dist/tmp` directory.
+ * Copies all HTML files in `src` over to the `dist/tmp` directory.
  */
 function prepareTemplates() {
   return gulp.src(join(APP_SRC, '**', '*.html'))
@@ -38,7 +38,7 @@ function prepareTemplates() {
 }
 
 /**
- * Processes the CSS files within `src/client` excluding those in `src/client/assets` using `postcss` with the
+ * Processes the CSS files within `src` excluding those in `src/assets` using `postcss` with the
  * configured processors.
  */
 function processComponentCss() {

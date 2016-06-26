@@ -139,7 +139,7 @@ The seed can generate a file `manifest.appcache` which lists all files included 
 The manifest is also annotated for use with `angular2-service-worker`. Some manual operations are currently required to enable this usage. The package must be installed, and `worker.js` manually copied into the project src directory:
 
 ```bash
-cp node_modules/angular2-service-worker/dist/worker.js src/client
+cp node_modules/angular2-service-worker/dist/worker.js src
 ```
 
 In order to generate the manifest file run:
@@ -193,52 +193,51 @@ Forks of this project demonstrate how to extend and integrate with other librari
 ├── package.json               <- dependencies of the project
 ├── protractor.conf.js         <- e2e tests configuration
 ├── src                        <- source code of the application
-│   └── client
-│       ├── app
-│       │   ├── +about
-│       │   │   ├── about.component.css
-│       │   │   ├── about.component.e2e-spec.ts
-│       │   │   ├── about.component.html
-│       │   │   ├── about.component.spec.ts
-│       │   │   ├── about.component.ts
-│       │   │   └── index.ts
-│       │   ├── +home
-│       │   │   ├── home.component.css
-│       │   │   ├── home.component.e2e-spec.ts
-│       │   │   ├── home.component.html
-│       │   │   ├── home.component.spec.ts
-│       │   │   ├── home.component.ts
-│       │   │   └── index.ts
-│       │   ├── app.component.e2e-spec.ts
-│       │   ├── app.component.html
-│       │   ├── app.component.spec.ts
-│       │   ├── app.component.ts
-│       │   ├── hot_loader_main.ts
-│       │   ├── main.ts
-│       │   └── shared
-│       │       ├── index.ts
-│       │       ├── name-list
-│       │       │   ├── index.ts
-│       │       │   ├── name-list.service.spec.ts
-│       │       │   └── name-list.service.ts
-│       │       ├── navbar
-│       │       │   ├── index.ts
-│       │       │   ├── navbar.component.css
-│       │       │   ├── navbar.component.html
-│       │       │   └── navbar.component.ts
-│       │       └── toolbar
-│       │           ├── index.ts
-│       │           ├── toolbar.component.css
-│       │           ├── toolbar.component.html
-│       │           └── toolbar.component.ts
-│       ├── assets
-│       │   └── svg
-│       │       └── more.svg
-│       ├── css
-│       │   └── main.css
-│       ├── index.html
-│       ├── tsconfig.json
-│       └── typings.d.ts
+│   └──── app
+│      │   ├── +about
+│      │   │   ├── about.component.css
+│      │   │   ├── about.component.e2e-spec.ts
+│      │   │   ├── about.component.html
+│      │   │   ├── about.component.spec.ts
+│      │   │   ├── about.component.ts
+│      │   │   └── index.ts
+│      │   ├── +home
+│      │   │   ├── home.component.css
+│      │   │   ├── home.component.e2e-spec.ts
+│      │   │   ├── home.component.html
+│      │   │   ├── home.component.spec.ts
+│      │   │   ├── home.component.ts
+│      │   │   └── index.ts
+│      │   ├── app.component.e2e-spec.ts
+│      │   ├── app.component.html
+│      │   ├── app.component.spec.ts
+│      │   ├── app.component.ts
+│      │   ├── hot_loader_main.ts
+│      │   ├── main.ts
+│      │   └── shared
+│      │       ├── index.ts
+│      │       ├── name-list
+│      │       │   ├── index.ts
+│      │       │   ├── name-list.service.spec.ts
+│      │       │   └── name-list.service.ts
+│      │       ├── navbar
+│      │       │   ├── index.ts
+│      │       │   ├── navbar.component.css
+│      │       │   ├── navbar.component.html
+│      │       │   └── navbar.component.ts
+│      │       └── toolbar
+│      │           ├── index.ts
+│      │           ├── toolbar.component.css
+│      │           ├── toolbar.component.html
+│      │           └── toolbar.component.ts
+│      ├── assets
+│      │   └── svg
+│      │       └── more.svg
+│      ├── css
+│      │   └── main.css
+│      ├── index.html
+│      ├── tsconfig.json
+│      ├── typings.d.ts
 ├── test-main.js               <- testing configuration
 ├── tools
 │   ├── README.md              <- build documentation

@@ -16,7 +16,7 @@ var onlyDirs = function (es: any) {
 };
 
 /**
- * Executes the build process, copying the assets located in `src/client/assets` over to the appropiate
+ * Executes the build process, copying the assets located in `src/assets` over to the appropiate
  * `dist/prod/assets` directory.
  */
 export = () => {
