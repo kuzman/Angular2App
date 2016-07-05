@@ -35,7 +35,7 @@
       <div layout-align="center">
         <section layout-align="center" layout="row" layout-sm="column">
           <div id="login-error" md-caption class="msg-error" ng-show="error" class="label">{{error}}</div>
-          <md-button type="submit" class="md-raised login-button" ng-disabled="clicked || loginForm.$invalid" translate="login.LOGIN">Login</md-button>
+          <md-button type="submit" class="md-raised login-button" [disabled]="clicked || loginForm.$invalid" translate="login.LOGIN">Login</md-button>
         </section>
       </div>
     </fieldset>

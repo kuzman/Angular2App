@@ -1,9 +1,9 @@
 {
-  "name": "angular2-seed-material2",
+  "name": "Angular2App",
   "version": "0.0.0",
-  "description": "Modular seed project for Angular 2 apps with fast, statically typed build",
+  "description": "",
   "repository": {
-    "url": "https://github.com/DeviantJS/angular2-seed-material2"
+    "url": ""
   },
   "scripts": {
     "build.dev": "gulp build.dev --color",
@@ -34,12 +34,7 @@
     "webdriver-start": "webdriver-manager start",
     "webdriver-update": "webdriver-manager update"
   },
-  "author": "Minko Gechev <mgechev>",
-  "contributors": [
-    {
-      "name": "Joshua Wiens <d3viant0ne>"
-    }
-  ],
+  "author": "",
   "license": "MIT",
   "devDependencies": {
     "async": "^1.4.2",
@@ -121,31 +116,33 @@
     "yargs": "^4.2.0"
   },
   "dependencies": {
-    "@angular/common": "2.0.0-rc.1",
-    "@angular/compiler": "2.0.0-rc.1",
-    "@angular/core": "2.0.0-rc.1",
-    "@angular/http": "2.0.0-rc.1",
-    "@angular/platform-browser": "2.0.0-rc.1",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
-    "@angular/router": "2.0.0-rc.1",
-    "@angular2-material/button": "^2.0.0-alpha.5",
-    "@angular2-material/card": "^2.0.0-alpha.5",
-    "@angular2-material/checkbox": "^2.0.0-alpha.5",
-    "@angular2-material/core": "^2.0.0-alpha.5",
-    "@angular2-material/grid-list": "^2.0.0-alpha.5",
-    "@angular2-material/icon": "^2.0.0-alpha.5",
-    "@angular2-material/input": "^2.0.0-alpha.5",
-    "@angular2-material/list": "^2.0.0-alpha.5",
-    "@angular2-material/progress-bar": "^2.0.0-alpha.5",
-    "@angular2-material/progress-circle": "^2.0.0-alpha.5",
-    "@angular2-material/radio": "^2.0.0-alpha.5",
-    "@angular2-material/sidenav": "^2.0.0-alpha.5",
-    "@angular2-material/slide-toggle": "^2.0.0-alpha.5",
-    "@angular2-material/tabs": "^2.0.0-alpha.5",
-    "@angular2-material/toolbar": "^2.0.0-alpha.5",
-    "autopulous-angular2-soap": "^0.1.0",
+    "@angular/common": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.4",
+    "@angular/core": "2.0.0-rc.4",
+    "@angular/forms": "0.1.1",
+    "@angular/http": "2.0.0-rc.4",
+    "@angular/platform-browser": "2.0.0-rc.4",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
+    "@angular/router": "3.0.0-alpha.8",
+    "@angular2-material/button": "^2.0.0-alpha.6",
+    "@angular2-material/card": "^2.0.0-alpha.6",
+    "@angular2-material/checkbox": "^2.0.0-alpha.6",
+    "@angular2-material/core": "^2.0.0-alpha.6",
+    "@angular2-material/grid-list": "^2.0.0-alpha.6",
+    "@angular2-material/icon": "^2.0.0-alpha.6",
+    "@angular2-material/input": "^2.0.0-alpha.6",
+    "@angular2-material/list": "^2.0.0-alpha.6",
+    "@angular2-material/progress-bar": "^2.0.0-alpha.6",
+    "@angular2-material/progress-circle": "^2.0.0-alpha.6",
+    "@angular2-material/radio": "^2.0.0-alpha.6",
+    "@angular2-material/sidenav": "^2.0.0-alpha.6",
+    "@angular2-material/slide-toggle": "^2.0.0-alpha.6",
+    "@angular2-material/tabs": "^2.0.0-alpha.6",
+    "@angular2-material/toolbar": "^2.0.0-alpha.6",
+    "autopulous-angular2-soap": "^0.4.5",
     "core-js": "^2.4.0",
     "es6-module-loader": "^0.17.8",
+    "ng2-translate": "^2.2.2",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.26",
