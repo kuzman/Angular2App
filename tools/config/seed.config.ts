@@ -1,7 +1,7 @@
 import { join } from 'path';
 import { argv } from 'yargs';
 
-import { Environments, InjectableDependency, SassOptions } from './seed.config.interfaces';
+import { Environments, InjectableDependency } from './seed.config.interfaces';
 
 /**
  * The enumeration of available environments.
@@ -40,7 +40,7 @@ export class SeedConfig {
 
   /**
    * The current environment.
-   * The default environment is `dev`, which can be overriden by the `--env` flag when running `npm start`.
+   * The default environment is `dev`, which can be overriden by the `--config-env ENV_NAME` flag when running `npm start`.
    */
   ENV = getEnvironment();
 
@@ -73,12 +73,10 @@ export class SeedConfig {
   APP_BASE = argv['base'] || '/';
 
   /**
-   * The flag to include templates into JS app prod file.
-   * Per default the option is `true`, but can it can be set to false using `--inline-template false`
-   * flag when running `npm run build.prod`.
-   * @type {boolean}
+   * The base path of node modules.
+   * @type {string}
    */
-  INLINE_TEMPLATES = argv['inline-template'] !== 'false';
+  NPM_BASE = join(this.APP_BASE, 'node_modules/');
 
   /**
    * The flag for the hot-loader option of the application.
@@ -210,7 +208,7 @@ export class SeedConfig {
    * The name of the bundle file to includes all CSS files.
    * @type {string}
    */
-  CSS_PROD_BUNDLE = 'all.css';
+  CSS_PROD_BUNDLE = 'main.css';
 
   /**
    * The name of the bundle file to include all JavaScript shims.
@@ -242,19 +240,18 @@ export class SeedConfig {
   CODELYZER_RULES = customRules();
 
   /**
-   * The SASS options to be used to compile the SCSS files.
+   * The flag to enable handling of SCSS files
+   * The default value is false. Override with the '--scss' flag.
+   * @type {boolean}
    */
-  SASS_OPTIONS: SassOptions = {
-  };
+  ENABLE_SCSS = argv['scss'] || true;
 
   /**
    * The list of NPM dependcies to be injected in the `index.html`.
    * @type {InjectableDependency[]}
    */
   NPM_DEPENDENCIES: InjectableDependency[] = [
-    { src: 'systemjs/dist/system-polyfills.src.js', inject: 'shims', env: ENVIRONMENTS.DEVELOPMENT },
     { src: 'zone.js/dist/zone.js', inject: 'libs' },
-    { src: 'reflect-metadata/Reflect.js', inject: 'shims' },
     { src: 'core-js/client/shim.min.js', inject: 'shims' },
     { src: 'systemjs/dist/system.src.js', inject: 'shims', env: ENVIRONMENTS.DEVELOPMENT },
     { src: 'rxjs/bundles/Rx.js', inject: 'libs', env: ENVIRONMENTS.DEVELOPMENT }
@@ -265,7 +262,7 @@ export class SeedConfig {
    * @type {InjectableDependency[]}
    */
   APP_ASSETS: InjectableDependency[] = [
-    { src: `${this.CSS_SRC}/main.css`, inject: true, vendor: false }
+    { src: `${this.CSS_SRC}/main.${ this.getInjectableStyleExtension() }`, inject: true, vendor: false },
   ];
 
   /**
@@ -286,6 +283,24 @@ export class SeedConfig {
       .concat(this.APP_ASSETS.filter(filterDependency.bind(null, this.ENV)));
   }
 
+  materialComponents = [
+    'button',
+    'card',
+    'checkbox',
+    'grid-list',
+    'icon',
+    'input',
+    'list',
+    'progress-bar',
+    'progress-circle',
+    'radio',
+    'sidenav',
+    'slide-toggle',
+    'button-toggle',
+    'tabs',
+    'toolbar'
+  ];
+
   /**
    * The configuration of SystemJS for the `dev` environment.
    * @type {any}
@@ -293,23 +308,24 @@ export class SeedConfig {
   protected SYSTEM_CONFIG_DEV: any = {
     defaultJSExtensions: true,
     packageConfigPaths: [
-      `${this.APP_BASE}node_modules/*/package.json`,
-      `${this.APP_BASE}node_modules/**/package.json`,
-      `${this.APP_BASE}node_modules/@angular/*/package.json`,
-      `${this.APP_BASE}node_modules/@angular2-material/*/package.json`
+      `/node_modules/*/package.json`,
+      `/node_modules/**/package.json`,
+      `/node_modules/@angular/*/package.json`,
+      `/node_modules/@angular2-material/*/package.json`
     ],
     paths: {
       [this.BOOTSTRAP_MODULE]: `${this.APP_BASE}${this.BOOTSTRAP_MODULE}`,
-      '@angular/core': `${this.APP_BASE}node_modules/@angular/core/core.umd.js`,
-      '@angular/common': `${this.APP_BASE}node_modules/@angular/common/common.umd.js`,
-      '@angular/compiler': `${this.APP_BASE}node_modules/@angular/compiler/compiler.umd.js`,
-      '@angular/http': `${this.APP_BASE}node_modules/@angular/http/http.umd.js`,
-      '@angular/router': `${this.APP_BASE}node_modules/@angular/router/router.umd.js`,
-      '@angular/platform-browser': `${this.APP_BASE}node_modules/@angular/platform-browser/platform-browser.umd.js`,
-      '@angular/platform-browser-dynamic': `${this.APP_BASE}node_modules/@angular/platform-browser-dynamic/platform-browser-dynamic.umd.js`,
-      'rxjs/*': `${this.APP_BASE}node_modules/rxjs/*`,
+      '@angular/common': `node_modules/@angular/common/bundles/common.umd.js`,
+      '@angular/compiler': `node_modules/@angular/compiler/bundles/compiler.umd.js`,
+      '@angular/core': `node_modules/@angular/core/bundles/core.umd.js`,
+      '@angular/forms': `node_modules/@angular/forms/bundles/forms.umd.js`,
+      '@angular/http': `node_modules/@angular/http/bundles/http.umd.js`,
+      '@angular/platform-browser': `node_modules/@angular/platform-browser/bundles/platform-browser.umd.js`,
+      '@angular/platform-browser-dynamic': `node_modules/@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js`,
+      '@angular/router': `node_modules/@angular/router/index.js`,
+      'rxjs/*': `node_modules/rxjs/*`,
       'app/*': `/app/*`,
-      '*': `${this.APP_BASE}node_modules/*`
+      '*': `node_modules/*`
     },
     packages: {
       rxjs: { defaultExtension: false }
@@ -339,7 +355,7 @@ export class SeedConfig {
       '*': 'node_modules/*'
     },
     packages: {
-      '@angular/core': {
+      '@angular/common': {
         main: 'index.js',
         defaultExtension: 'js'
       },
@@ -347,7 +363,11 @@ export class SeedConfig {
         main: 'index.js',
         defaultExtension: 'js'
       },
-      '@angular/common': {
+      '@angular/core': {
+        main: 'index.js',
+        defaultExtension: 'js'
+      },
+      '@angular/forms': {
         main: 'index.js',
         defaultExtension: 'js'
       },
@@ -415,7 +435,9 @@ export class SeedConfig {
           [`${this.APP_BASE.replace(/\/$/, '')}`]: this.APP_DEST
         }
       }
-    }
+    },
+    // Note: you can customize the location of the file
+    'environment-config': require('../env/config.json')
   };
 
   /**
@@ -437,6 +459,10 @@ export class SeedConfig {
       return this.PLUGIN_CONFIGS[pluginKey];
     }
     return null;
+  }
+
+  getInjectableStyleExtension() {
+    return this.ENV === ENVIRONMENTS.PRODUCTION && this.ENABLE_SCSS ? 'scss' : 'css';
   }
 
 }

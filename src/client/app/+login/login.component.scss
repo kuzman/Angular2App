@@ -1,0 +1,38 @@
+.login-otp-message {
+  text-align: center;
+  font-size: 0.8em;
+}
+
+.login-otp-retry {
+  text-align: center;
+  font-size: 0.8em;
+  width: 200px;
+}
+
+.login-footer {
+  font-size: 0.9em;
+  color: white;
+}
+
+.login-footer .login-footer-link {
+  text-transform: none;
+}
+
+.md-input-has-value .login-label {
+  color: $loginLabels !important;
+}
+.md-input-focused .login-label {
+  color: $loginLabels !important;
+}
+
+div#login-error {
+  padding-right: 15px;
+}
+
+.msg-error {
+  color: red;
+}
+
+.msg-ok {
+  color: darkgreen;
+}
